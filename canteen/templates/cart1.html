@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="cart1.css" />
+<div class="container px-3 my-5 clearfix">
+    <!-- Shopping cart table -->
+    <div class="card">
+        <div class="card-header">
+            <h2> Cart</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered m-0" border="2">
+                <thead>
+                  <tr>
+                    <!-- Set columns width -->
+                    <th class="text-center py-3 px-4" style="min-width: 400px;">image</th>
+                    <th class="text-center py-3 px-4" style="min-width: 400px;">Product Name &amp; Details</th>
+                    <th class="text-right py-3 px-4" style="width: 100px;">Price</th>
+                    <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
+                    <th class="text-right py-3 px-4" style="width: 100px;">Total</th>
+                    <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for c in c_det %}
+                  <tr>
+                    <td class="p-4">
+                      <div ><img src="{{ c.image }}" height=80px width=80px class="d-block ui-w-40 ui-bordered mr-4" alt=""></div>
+                      </td>
+                      <td class="p-4">
+                      <div class="media align-items-center">
+
+                        
+                        <div class="media-body">
+                          <h4  >"{{ c.item }}"</h4>
+                          <!-- <small>
+                            <span class="text-muted">Color:</span>
+                            <span class="ui-product-color ui-product-color-sm align-text-bottom" style="background:#e81e2c;"></span> &nbsp;
+                            <span class="text-muted">Size: </span> EU 37 &nbsp;
+                            <span class="text-muted">Ships from: </span> China
+                          </small> -->
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-right font-weight-semibold align-middle p-4">{{ c.price }}</td>
+                    <td class="align-middle p-4"><input type="text" class="form-control text-center" value= " {{ c.quantity }}"></td>
+                    <!-- <td class="text-right font-weight-semibold align-middle p-4">$115.1</td> -->
+                    <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                  </tr>
+                  {% endfor %}
+                  
+        
+                </tbody>
+              </table>
+            </div>
+            <!-- / Shopping cart table -->
+        
+            
+        
+            <div class="float-right">
+              <button type="button" onclick="window.location.href='/user1';"class="btn btn-lg btn-default md-btn-flat mt-2 mr-3" >Back to shopping</button>
+              <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
+            </div>
+        
+          </div>
+      </div>
+  </div>
