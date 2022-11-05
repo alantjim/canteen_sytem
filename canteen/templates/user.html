@@ -59,17 +59,17 @@
 <style>
      .container1{
                                                     display: block;
-                                                    height: 40px;
+                                                    height: 38px;
                                                     overflow: hidden;
                                                     width: 100px;
-                                                background: rgba(255, 255, 255, 0.856);
-                                                font-size:25px;
+                                                background: rgba(3, 3, 3, 0.532);
+                                                font-size:23px;
                                             }
 
                                             .container1:hover{
                                             overflow:visible;
-                                                height: 550px;
-                                                width: 200px;
+                                                height: 100%;
+                                                width: 100%;
                                                 background: rgba(23, 22, 22, 0.879);
                                             }
 
@@ -134,7 +134,7 @@
  {% for d in l_det %}
 {% for a in r_det %}
 {% if a.uid  == d.uid2 %}
-                                            <a  class="booking" href="#">{{a.first_name}} > </a>
+                                            <a  class="booking" href="#"><font color=white>{{a.first_name}} ></font> </a>
 
                                             <ul>
 
@@ -150,7 +150,7 @@
                                                     <li><hr></li>
                                                     <li><a class="booking" href="/cpass/">Change Password</a></li>
                                                     <li><hr></li>
-                                                    <li><a class="booking" href="/logout/">Logout</a></li>
+                                                    <li><a class="booking" href="/logout/">Logout</a></li><hr>
                                                 </center>
                                                 </ul>
                                             </div>
@@ -186,8 +186,8 @@
             </div>
         </section>
 
-<section id="portfolio" class="portfolio" style="background:url(../images/bannerbg.jpg) center top no-repeat;">
-    <div style="background-color:rgba(255, 255, 255, 0.68);">
+<section id="portfolio" class="portfolio" >
+    <div style="background-color:rgba(255, 255, 255, 0.548);">
             <div class="container">
                 <div class="row">
                     <div class="portfolio_content text-center  wow fadeIn" data-wow-duration="5s">

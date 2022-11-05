@@ -72,21 +72,35 @@
     </style>
 	<script  lang="javascript">
 function vForm(){
+    var sid = document.getElementById("sid").value ;
     var fn = document.getElementById("fn").value ;
     var ln = document.getElementById("ln").value ;
-  	var num = document.getElementById("mob").value ;
+  	var mob = document.getElementById("mob").value ;
+  	var dep = document.getElementById("dep").value ;
+
   	var pass = document.getElementById("pass").value ;
   	var cpass = document.getElementById("cpass").value ;
-     var str=/[a-zA-Z]/;
+     var str= /^[A-Za-z]+$/;
+     var num=/^[0-9]+$/;
+     if (num.test(sid)==false ){
+            alert("student id must be a number");
+            return false;
+        }
+
      if ( str.test(fn)==false || str.test(ln)==false)
      {
         alert("Name must be alphabets")
         return false;
        }
-     if ( isNaN(num)){
+     if (num.test(mob)==false ){
             alert("mobile number must be a number");
             return false;
         }
+      if (dep=="null" ){
+            alert("Select a department");
+            return false;
+        }
+
      if ( pass != cpass){
             alert("passwords not match");
             return false;
@@ -178,13 +192,13 @@ function vForm(){
 					</span>
 
                     <div class="wrap-input100 validate-input" data-validate = "Enter your id">
-						<input class="input100" type="text" name="uid" placeholder="ID">
+						<input class="input100" type="text" name="uid" placeholder="ID" id="sid" onkeyup="return vForm()" minlength="5" maxlength="5">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter first name">
-						<input class="input100" type="text" name="f_name" placeholder="First name" id="fn">
+						<input class="input100" type="text" name="f_name" placeholder="First name" id="fn" onkeyup="return vForm()">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Enter Last name">
@@ -198,7 +212,7 @@ function vForm(){
 
                     <div>
                        <small><font color="white">DEPARTMENT : &nbsp</font></small>
-						<select name="depart" class="mySelect">
+						<select name="depart" class="mySelect" id="dep">
 							<option  selected value="null"><small>select  department</small></option>
 							{% for a in d_det %}
 							<option value ='{{a.depart}}'><small><font color="black">{{a.depart}}</font> </small>

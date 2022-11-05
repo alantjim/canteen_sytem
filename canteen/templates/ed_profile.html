@@ -6,7 +6,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
     <head>
-		<title>ed_profile</title>
+		<title>canteen_ed_profile</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Food and Restorent One page Template</title>
@@ -66,142 +66,7 @@
 </head>
 <body class="slider" >
     
-{% for d in l_det %}
-{% for a in r_det %}
-{% if email == d.email%}
-{% if a.uid  == d.uid2 %}
-<div style="background-color:rgba(0, 0, 0, 0.486)">
 
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        <header id="home" class="navbar-fixed-top" style="text-align:right;">
-            <div class="header_top_menu clearfix">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-5 col-md-offset-3 col-sm-12 text-right">
-                            <div class="call_us_text">
-								<!--<a href=""><i class="fa fa-clock-o"></i> Order Foods 24/7</a>
-								<a href=""><i class="fa fa-phone"></i>061 9876 5432</a>-->
-                                <marquee>You are at the home of the best <b>pies..</b></marquee>
-							</div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- End navbar-collapse-->
-
-            <div class="main_menu_bg" >
-                <div class="container">
-                    <div class="row">
-                        <nav class="navbar navbar-default">
-                            <div class="container-fluid">
-                                <!-- Brand and toggle get grouped for better mobile display -->
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                    <a class="navbar-brand our_logo" href="#"><img src="{% static ''%}" alt="" /></a>
-                                </div>
-
-                                <!-- Collect the nav links, forms, and other content for toggling -->
-                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
-
-                                    <ul class="nav navbar-nav navbar-right" >
-                                        <style>
-
-                                            </style><center>
-                                                <div class="container1">
-                                            <a  class="booking" href="#">{{a.first_name}} > </a>
-                                            
-                                            <ul>
-                                                    <li><a class="booking" href="/user1/">home</a></li>
-                                                    <li><hr></li>
-                                                    <li><a class="booking" href="/profile/">Profile</a></li>
-                                                    <li><hr></li>
-                                                    <li><a class="booking" href="#">Orders</a></li>
-                                                    <li><hr></li>
-                                                    <li><a class="booking" href="/e_profile/{{a.uid}}">Edit Profile</a></li>
-                                                    <li><hr></li>
-                                                    
-                                                    <li><a class="booking" href="/logout/">Logout</a></li>
-                                                </center>
-                                                </ul>
-                                            </div>
-
-
-                                    </ul>
-                                </div><!-- /.navbar-collapse -->
-                            </div><!-- /.container-fluid -->
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-<section id="slider" class="slider">
-<div style="background-color:rgba(0, 0, 0, 0.498);">
-
-   <br><br><br>
-   <form action="" method="POST">
-    {% csrf_token %}
-<div class="container2">
-
-
-<div class="card1"> <div class="info1">
-
-
-    <span>Edit form</span>
-    <button class="button1"  onclick="window.location.href = '/e_profile/{{a.uid}}/';">save</button> </div> <div class="forms1"> <div class="inputs1"><br>
-
-
-         <span>First Name : </span> <input type="text"  value="{{a.first_name}}" name="f_name" id="fname"> </div><hr>
-         <div class="inputs1">
-             <span>Last Name : </span> <input type="text"  value="{{a.last_name}}" name="l_name" id="l_name" > </div> <hr><div class="inputs1">
-                 <div class="inputs1"> <span>Mobile : </span> <input type="text"  value="{{a.mobile}}" name="mobile" id="mob" > </div><hr>
-                 <div class="inputs1"> <span>Department : </span> <select name="depart" >
-                    <option  selected value="MCA"><small>{{a.depart}} </small></option>
-                            {% for a in d_det %}
-							<option value ='{{a.depart}}'><small><font color="black">{{a.depart}}</font> </small>
-
-                             {% endfor %}
-							<hr>
-</div></div></select>
-
-    </div> </div>
-   </div>
-    </form>
-       </div>
-        </section>
-<div id="dropDownSelect1"></div>
-<!--Footer-->
-        <footer id="footer" class="footer" >
-            <div class="container text-center" >
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="copyright wow zoomIn" data-wow-duration="3s">
-							<p>Made with <i class="fa fa-heart"></i> by Amal Jyothi College of engineering ,Kanjirappallly</p>
-						</div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-		<div class="scrollup">
-			<a href="#"><i class="fa fa-chevron-up"></i></a>
-		</div>
-
-        {% endif %}
-        {% endif %}
-    {% endfor %}
-
-        {% endfor %}
 
 
 
@@ -235,4 +100,247 @@
         <script src="{% static 'assets/js/plugins.js'%}"></script>
         <script src="{% static 'assets/js/main.js'%}"></script>
     </body>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+	<!-- title -->
+	<title>Fruitkha - Slider Version</title>
+
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="{% static 'assets/css/all.min.css'%}">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css'%}">
+	<!-- owl carousel -->
+	<link rel="stylesheet" href="{% static 'assets/css/owl.carousel.css'%}">
+	<!-- magnific popup -->
+	<link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css'%}">
+	<!-- animate css -->
+	<link rel="stylesheet" href="{% static 'assets/css/animate.css'%}">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="{% static 'assets/css/meanmenu.min.css'%}">
+	<!-- main style -->
+	<link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
+	<!-- responsive -->
+	<link rel="stylesheet" href="{% static 'assets/css/responsive.css'%}">
+
+</head>
+<body>
+	
+	<!--PreLoader-->
+    <!-- <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div> -->
+    <!--PreLoader Ends-->
+	
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+						<div class="site-logo">
+							<a href="/user1/">
+								<!-- <img src="{% static 'assets/img/logo.png'%}" alt=""> -->
+								<h3 style="color:rgba(255, 136, 0, 0.861);">AJCE CANTEEN</h3>
+							</a>
+						</div>
+						<!-- logo -->
+
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li class="current-list-item"><a href="/user1/">Home</a>
+									<!-- <ul class="sub-menu">
+										<li><a href="index.html">Static Home</a></li>
+										<li><a href="index_2.html">Slider Home</a></li>
+									</ul> -->
+								</li>
+								<li><a href="#">About</a></li>
+								<li><a href="/shop/">Shop</a>
+									<ul class="sub-menu">
+										<li><a href="/shop/">Shop</a></li>
+										<li><a href="/checkout/">Check Out</a></li>
+										<!-- <li><a href="single-product.html">Single Product</a></li> -->
+										<li><a href="/cart/">Cart</a></li>
+									</ul>
+								</li>
+								
+								<!-- <li><a href="#">Contact</a></li>
+								<li><a href="#">User</a>
+									<ul class="sub-menu">
+										<li><a href="/profile/">profile</a></li>
+										<li><a href="/e_profile/">edit profile</a></li>
+										<li><a href="/cpass/">change password</a></li>
+									</ul>
+								</li>
+								<li><a href="/logout/">logout</a> -->
+									
+								</li>
+								<li></li>
+								<li>
+									<div class="header-icons" style="margin-left:300px">
+										<a class="shopping-cart" href="/cart/"><i class="fas fa-shopping-cart"></i> cart</a>
+										<li><a class="shopping-cart" href="#"><i class="fas fa-user"></i></a>
+										<ul class="sub-menu">
+											<li><a href="/profile/">profile</a></li>
+											<li><a href="/e_profile/">edit profile</a></li>
+											<li><a href="/cpass/">change password</a></li>
+											<li><a href="/logout/">logout</a>
+										</ul>
+									    </li>
+										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i> </a>
+									</div>
+								</li>
+							</ul>
+						</nav>
+						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+						<div class="mobile-menu"></div>
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end header -->
+	
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>Search For:</h3>
+							<input type="text" placeholder="Keywords">
+							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search area -->
+	
+	
+    {% for d in l_det %}
+    {% for a in r_det %}
+    {% if email == d.email%}
+    {% if a.uid  == d.uid2 %}
+    <div style="background-color:rgba(22, 44, 52, 0.858);">
+    
+            <!--[if lt IE 8]>
+                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+    
+    
+    <section id="slider" class="slider">
+    <!-- <div style="background-color:rgba(134, 134, 134, 0.498);"> -->
+    
+       <br><br><br>
+       <form action="" method="POST">
+        {% csrf_token %}
+    <div class="container2">
+    
+    
+    <div class="card1"> <div class="info1">
+    
+    
+        <span>Edit form</span>
+        <button class="button1"  onclick="window.location.href = '/e_profile/{{a.uid}}/';">save</button> </div> <div class="forms1"> <div class="inputs1">
+    
+    
+             <span>First Name : </span> <input type="text"  value="{{a.first_name}}" name="f_name" id="fname"> </div><hr>
+             <div class="inputs1">
+                 <span>Last Name : </span> <input type="text"  value="{{a.last_name}}" name="l_name" id="l_name" > </div> <hr><div class="inputs1">
+                     <div class="inputs1"> <span>Mobile : </span> <input type="text"  value="{{a.mobile}}" name="mobile" id="mob" > </div><hr>
+                     <div class="inputs1"> <span>Department : </span> <select name="depart" >
+                        <option  selected value="MCA"><small>{{a.depart}} </small></option>
+                                {% for a in d_det %}
+                                <option value ='{{a.depart}}'><small><font color="black">{{a.depart}}</font> </small>
+    
+                                 {% endfor %}
+                                
+    </div></div></select>
+    
+        </div> </div>
+       </div>
+        </form>
+        
+    <div id="dropDownSelect1"></div>
+    
+           
+    
+            {% endif %}
+            {% endif %}
+        {% endfor %}
+    
+            {% endfor %} </div>
+        </section>
+
+
+
+
+	<!-- footer -->
+
+	<!-- end footer -->
+	
+	<!-- copyright -->
+    <br>
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<p>Copyrights &copy; 2022 - <a href="https:aesajce.in/">AES</a>,  All Rights Reserved.<br>
+						Distributed By - <a href="https://ajce.in/">Amal Jyothi College Of Engineering , Kanjirappally</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end copyright -->
+	
+	<!-- jquery -->
+	<script src="{% static 'assets/js/jquery-1.11.3.min.js'%}"></script>
+	<!-- bootstrap -->
+	<script src="{% static 'assets/bootstrap/js/bootstrap.min.js'%}"></script>
+	<!-- count down -->
+	<script src="{% static 'assets/js/jquery.countdown.js'%}"></script>
+	<!-- isotope -->
+	<script src="{% static 'assets/js/jquery.isotope-3.0.6.min.js'%}"></script>
+	<!-- waypoints -->
+	<script src="{% static 'assets/js/waypoints.js'%}"></script>
+	<!-- owl carousel -->
+	<script src="{% static 'assets/js/owl.carousel.min.js'%}"></script>
+	<!-- magnific popup -->
+	<script src="{% static 'assets/js/jquery.magnific-popup.min.js'%}"></script>
+	<!-- mean menu -->
+	<script src="{% static 'assets/js/jquery.meanmenu.min.js'%}"></script>
+	<!-- sticker js -->
+	<script src="{% static 'assets/js/sticker.js'%}"></script>
+	<!-- main js -->
+	<script src="{% static 'assets/js/main.js'%}"></script>
+
+</body>
 </html>

@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="cart1.css" />
+{% load static %}
+<link rel="stylesheet" href={% static 'css/util.css'%} />
 <div class="container px-3 my-5 clearfix">
     <!-- Shopping cart table -->
     <div class="card">
@@ -43,7 +44,7 @@
                     <td class="text-right font-weight-semibold align-middle p-4">{{ c.price }}</td>
                     <td class="align-middle p-4"><input type="text" class="form-control text-center" value= " {{ c.quantity }}"></td>
                     <!-- <td class="text-right font-weight-semibold align-middle p-4">$115.1</td> -->
-                    <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                    <td class="text-center align-middle px-0"><a href="/de_cart/{{c.cart_id}}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
                   </tr>
                   {% endfor %}
                   

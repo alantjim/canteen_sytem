@@ -33,6 +33,11 @@ urlpatterns = [
     path('student/', include('app1.urls')),
     path('/profile/', include('app1.urls')),
     path('user1/', include('app1.urls')),
+    path('shop/', include('app1.urls')),
+    path('search_shop/', include('app1.urls')),
+    path('shop1/<int:id>', include('app1.urls')),
+    path('/staff_item_add/', include('app1.urls')),
+
 
     path('/logout/', include('app1.urls')),
     #path('user1/logout/', include('app1.urls')),
@@ -41,10 +46,15 @@ urlpatterns = [
     path('profile/login/', include('app1.urls')),
     path('/cpass/', include('app1.urls')),
     #path('/e_profile/', include('app1.urls')),
-    path('/e_profile/<int:id>/', include('app1.urls')),
-    path('/cart/<int:id>/', include('app1.urls')),
+    path('/e_profile/', include('app1.urls')),
+    path('/u_cart/', include('app1.urls')),
+    path('/icart/<int:id>/', include('app1.urls')),
+    path('/de_cart/<int:id>/', include('app1.urls')),
     path('staff/', include('app1.urls')),
+
     path('cart/', include('app1.urls')),
+    path('checkout/', include('app1.urls')),
+
 
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

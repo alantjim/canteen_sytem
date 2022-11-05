@@ -1,7 +1,7 @@
 from django.urls import path
 from django.shortcuts import render
 from django.contrib import admin,messages
-from .models import users_reg,users_login,type,items,department,s_items,staff_reg,teachers,cart1
+from .models import users_reg,users_login,type,items,department,staff_reg,teachers,cart1
 from django.contrib.auth.models import Group,User
 from django import forms
 from django.http import HttpResponse,HttpResponseRedirect
@@ -11,6 +11,8 @@ from django.http import HttpResponse,HttpResponseRedirect
 admin.site.site_header  =  "Canteen admin"
 admin.site.site_title  =  "AJCE canteen admin site"
 admin.site.index_title  =  "Canteen Management Admin"
+
+
 
 class CsvImportForm(forms.Form):
     csv_upload=forms.FileField()
@@ -117,7 +119,6 @@ admin.site.register(users_reg, Adminuserreg )
 admin.site.register(type,)
 admin.site.register(items,)
 admin.site.register(cart1,)
-admin.site.register(s_items,)
 admin.site.register(staff_reg,Adminstaff_reg)
 admin.site.register(teachers,Adminteachers)
 admin.site.register(department,AdminDepartrment)
