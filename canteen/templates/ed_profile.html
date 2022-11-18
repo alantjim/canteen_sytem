@@ -201,7 +201,7 @@
 								<li>
 									<div class="header-icons" style="margin-left:300px">
 										<a class="shopping-cart" href="/cart/"><i class="fas fa-shopping-cart"></i> cart</a>
-										<li><a class="shopping-cart" href="#"><i class="fas fa-user"></i></a>
+										<li><a class="shopping-cart" href="#"><i class="fas fa-user">&nbsp; </i>  {{user.first_name}} {{user.last_name}}</a>
 										<ul class="sub-menu">
 											<li><a href="/profile/">profile</a></li>
 											<li><a href="/e_profile/">edit profile</a></li>
@@ -233,8 +233,11 @@
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
 							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
+							<form action="/user_search/" method="POST">
+								{% csrf_token %}
+							<input type="text" placeholder="Keywords" name="sea_item">
+							<button type="submit" >Search <i class="fas fa-search"></i></button>
+						</form>
 						</div>
 					</div>
 				</div>
@@ -248,7 +251,7 @@
     {% for a in r_det %}
     {% if email == d.email%}
     {% if a.uid  == d.uid2 %}
-    <div style="background-color:rgba(22, 44, 52, 0.858);">
+	<div style="background-image: url('{% static 'assets/img/7.jpg'%}'); ">
     
             <!--[if lt IE 8]>
                 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

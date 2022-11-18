@@ -15,10 +15,53 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-profile.html" />
 
-	<title>Profile | AdminKit Demo</title>
+	<title>add_item</title>
 
 	<link href="{% static 'staff_assets/css/app.css'%}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+
+
+	<script  lang="javascript">
+		function vForm(){
+			var type = document.getElementById("type").value ;
+			var item = document.getElementById("item").value ;
+			var stock = document.getElementById("stock").value ;
+			var price = document.getElementById("price").value ;
+			var image = document.getElementById("image").value ;
+		
+			var str= /^[a-zA-Z]+$/;
+			var num=/^[0-9]+$/;
+			if (type=="null" ){
+					alert("select the item type");
+					return false;
+				}
+				if ( str.test(item)==false )
+			 {
+				alert("Enter a valid item name")
+				return false;
+			   }
+			   if (num.test(price)==false ){
+					alert("Enter price in number");
+					return false;
+				}	
+
+			 if (num.test(stock)==false ){
+					alert("Enter Stock in number");
+					return false;
+				}
+					
+		
+			 if ( image=="")
+			 {
+				alert("upload an image")
+				return false;
+			   }
+			
+		
+			 return true;
+		   }
+		</script>
 </head>
 
 <body>
@@ -35,8 +78,18 @@
 					</li>
 
 					<li class="sidebar-item">
+						<a class="sidebar-link" href="/staff_dash/">
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Home</span>
+            </a>
+					</li>
+					<li class="sidebar-item active">
 						<a class="sidebar-link" href="/staff_item_add/">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Add item</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="/staff_item_view/">
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">View Items</span>
             </a>
 					</li>
 					<li class="sidebar-item">
@@ -57,12 +110,12 @@
 
 				
 			</nav>
-			<div >
+			<div style="background-color:rgb(63, 59, 79);">
 				{% for msg in messages %}
 						<p><font color="red">{{ msg}}</font></p>
 				{% endfor %}</font>
 			</div>
-<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+<form action="" method="POST" enctype="multipart/form-data"  onsubmit="return vForm()">{% csrf_token %}
 			<main class="content">
 				<div class="row">
 					<div class="col-12 col-lg-6">
@@ -70,8 +123,8 @@
 							<div class="card-header">
 								<h5 class="card-title mb-0">TYPE</h5>
 							</div>
-							<select class="form-select mb-3" name="type">
-								<option selected>Type</option>
+							<select class="form-select mb-3" name="type" id="type">
+								<option selected value="null">Type</option>
 								{% for a in t_det %}
 							<option value ='{{a.type}}'><small><font color="black">{{a.type}}</font> </small></option>
 
@@ -85,13 +138,13 @@
 								<h5 class="card-title mb-0">Item name</h5>
 							</div>
 							<div class="card-body">
-								<input type="text" class="form-control" placeholder="Item name" name="item">
+								<input type="text" class="form-control" placeholder="Item name" name="item" id="item">
 							</div><br>
 							<div class="card-header">
 								<h5 class="card-title mb-0">Price</h5>
 							</div>
 							<div class="card-body">
-								<input type="text" class="form-control" placeholder="Price" name="price">
+								<input type="text" class="form-control" placeholder="Price" name="price" id="price">
 							</div>
 
 
@@ -104,7 +157,7 @@
 								<h5 class="card-title mb-0">Stock</h5>
 							</div>
 							<div class="card-body">
-								<input type="text" class="form-control" placeholder="Stock" name="stock">
+								<input type="text" class="form-control" placeholder="Stock" name="stock" id="stock">
 							</div><br>
 						<!-- </div>
 					</div>
@@ -112,10 +165,10 @@
 					<div class="col-12 col-lg-6">
 						<div class="card"> -->
 							<div class="card-header"><br><br>
-								<h5 class="card-title mb-0">Input</h5>
+								<h5 class="card-title mb-0">Item image</h5>
 							</div>
 							<div class="card-body">
-								<input type="file" class="form-control" placeholder="Input">
+								<input type="file" class="form-control" accept=".png,.jpeg,.jpg,.gif" name="image" id="image">
 							</div>
 							
 							<div class="card-body text-center">

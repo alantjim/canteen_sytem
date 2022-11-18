@@ -34,9 +34,11 @@ urlpatterns = [
     path('/profile/', include('app1.urls')),
     path('user1/', include('app1.urls')),
     path('shop/', include('app1.urls')),
-    path('search_shop/', include('app1.urls')),
+    path('user_search/', include('app1.urls')),
     path('shop1/<int:id>', include('app1.urls')),
     path('/staff_item_add/', include('app1.urls')),
+    path('/staff_item_view/', include('app1.urls')),
+
 
 
     path('/logout/', include('app1.urls')),
@@ -50,7 +52,7 @@ urlpatterns = [
     path('/u_cart/', include('app1.urls')),
     path('/icart/<int:id>/', include('app1.urls')),
     path('/de_cart/<int:id>/', include('app1.urls')),
-    path('staff/', include('app1.urls')),
+    path('staff_dash/', include('app1.urls')),
 
     path('cart/', include('app1.urls')),
     path('checkout/', include('app1.urls')),

@@ -92,7 +92,7 @@
 								<li>
 									<div class="header-icons" style="margin-left:300px">
 										<a class="shopping-cart" href="/cart/"><i class="fas fa-shopping-cart"></i> cart</a>
-										<li><a class="shopping-cart" href="#"><i class="fas fa-user"></i></a>
+										<li><a class="shopping-cart" href="#"><i class="fas fa-user">&nbsp; </i>  {{user.first_name}} {{user.last_name}}</a>
 										<ul class="sub-menu">
 											<li><a href="/profile/">profile</a></li>
 											<li><a href="/e_profile/">edit profile</a></li>
@@ -100,7 +100,7 @@
 											<li><a href="/logout/">logout</a>
 										</ul>
 									    </li>
-										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search" ></i> </a>
 									</div>
 								</li>
 							</ul>
@@ -124,8 +124,11 @@
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
 							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
+							<form action="/user_search/" method="POST">
+								{% csrf_token %}
+							<input type="text" placeholder="Keywords" name="sea_item">
+							<button type="submit" >Search <i class="fas fa-search"></i></button>
+						</form>
 						</div>
 					</div>
 				</div>
@@ -137,7 +140,7 @@
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
-			<div class="row">
+			<div class="row" style="">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>Home of the best PIES </p>
@@ -173,9 +176,9 @@
 				<div class="col-lg-4 col-md-6 text-center ">
 					<div class="single-product-item">
 						<div class="product-image" >
-							<img src="{{ i.image.url }}" style="height:250px;width:250px" alt="">
+							<img src="{{ i.image.url }}" style="height:250px;width:300px" alt=""> 
 						</div>
-						<h3>{{i.item}}({{i.Type}})</h3>
+						<h3>{{i.item}}</h3><h6>{{i.Type}}</h6>
 						<p class="product-price"><span>Rupees</span> {{i.price}}</p>
 						<a href="/icart/{{i.Items_id}}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>

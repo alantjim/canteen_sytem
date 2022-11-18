@@ -15,7 +15,7 @@ def index(request):
         email = request.POST.get("email")
         password = request.POST.get("pass")
 
-        if users_login.objects.filter(email=email, password=password).exists():
+        if users_login.objects.filter(email=email, password=password,type="Student").exists():
             a = users_login.objects.get(email=email)
             uid = a.uid2
             if users_reg.objects.filter(uid=uid).exists():
@@ -26,14 +26,14 @@ def index(request):
                 messages.error(request, '----invalid credentials----')
                 return redirect('/home/')
 
-        elif teachers.objects.filter(email=email, password=password).exists():
-            request.session['email'] = email
-            request.session['password'] = password
-            return redirect('user1/')
+        # elif teachers.objects.filter(email=email, password=password).exists():
+        #     request.session['email'] = email
+        #     request.session['password'] = password
+        #     return redirect('user1/')
         elif staff_reg.objects.filter(email=email, password=password).exists():
             request.session['email'] = email
             request.session['password'] = password
-            return redirect('staff_item_add/')
+            return redirect('/staff_dash/')
         else:
             messages.error(request, '----invalid credentials----')
             return redirect('/home/')
@@ -91,19 +91,26 @@ def user1(request):
    # id=request.session['uid']
    elif 'email' in request.session:
      email=request.session['email']
+     usr=users_login.objects.get(email=email)
+     uid=usr.uid2
+     user_t=users_reg.objects.get(uid=uid)
+
+
+
+
      f_item=""
      list_items = items.objects.all()
-     if request.method == "POST":
-             fil_item=request.POST.get("fil_item")
-             fil_type=request.POST.get("fil_type")
-             if fil_type=='null' and fil_item=='':
-                 list_items = items.objects.all()
-             elif fil_type=='null' and fil_item!='' :
-                 list_items = items.objects.filter(item__icontains=fil_item)
-             elif fil_item=='' and fil_type!='null':
-                 list_items = items.objects.filter(Type_id=fil_type)
-             else:
-                list_items=items.objects.filter(item=fil_item , Type_id=fil_type)
+     # if request.method == "POST":
+     #         fil_item=request.POST.get("fil_item")
+     #         fil_type=request.POST.get("fil_type")
+     #         if fil_type=='null' and fil_item=='':
+     #             list_items = items.objects.all()
+     #         elif fil_type=='null' and fil_item!='' :
+     #             list_items = items.objects.filter(item__icontains=fil_item)
+     #         elif fil_item=='' and fil_type!='null':
+     #             list_items = items.objects.filter(Type_id=fil_type)
+     #         else:
+     #            list_items=items.objects.filter(item=fil_item , Type_id=fil_type)
 
          #    list_items = items.objects.filter(Type_id=fi_item)
 
@@ -115,7 +122,8 @@ def user1(request):
          'teacher': teachers.objects.filter(email=email),
          't_det': type.objects.all(),
          'i_det':list_items,
-         'email': email
+         'email': email,
+         'user':user_t
         }
    return render(request, 'index_2.html', content1)
 
@@ -128,6 +136,10 @@ def shop(request):
    elif 'email' in request.session:
      email=request.session['email']
      f_item=""
+
+     usr = users_login.objects.get(email=email)
+     uid = usr.uid2
+     user_t = users_reg.objects.get(uid=uid)
      list_items = items.objects.all()
      # if request.method == "POST":
      #         fil_item=request.POST.get("fil_item")
@@ -151,7 +163,8 @@ def shop(request):
          'teacher': teachers.objects.filter(email=email),
          't_det': type.objects.all(),
          'i_det':list_items,
-         'email': email
+         'email': email,
+         'user':user_t
         }
    return render(request, 'shop.html', content1)
 
@@ -165,7 +178,9 @@ def shop1(request,id):
      email=request.session['email']
      f_item=""
      list_items = items.objects.filter(Type=Types)
-
+     usr = users_login.objects.get(email=email)
+     uid = usr.uid2
+     user_t = users_reg.objects.get(uid=uid)
      content1= {
          'l_det': users_login.objects.filter(email=email),
          'r_det': users_reg.objects.all(),
@@ -174,20 +189,29 @@ def shop1(request,id):
          'teacher': teachers.objects.filter(email=email),
          't_det': type.objects.all(),
          'i_det':list_items,
-         'email': email
+         'email': email,
+         'user':user_t
         }
    return render(request, 'shop.html', content1)
 
 
-def search_shop(request):
+def user_search(request):
 
    if request.session['email'] == 'null':
        return redirect('/home/')
    elif 'email' in request.session:
-     Types = type.objects.get(Type_id=id)
+     
      email=request.session['email']
      f_item=""
-     list_items = items.objects.filter(Type=Types)
+     list_items = items.objects.all()
+     if request.method=='POST':
+         search_item=request.POST.get("sea_item")
+         if  search_item == '':
+             list_items = items.objects.all();
+         else:
+             list_items = items.objects.filter(item__icontains=search_item)
+
+
 
      content2= {
          'l_det': users_login.objects.filter(email=email),
@@ -199,7 +223,7 @@ def search_shop(request):
          'i_det':list_items,
          'email': email
         }
-     return render(request, 'shop.html', content2)
+     return render(request, 'search_item.html', content2)
 
 
 def staff(request):
@@ -230,6 +254,10 @@ def cpass(request):
    if request.session['email'] == 'null':
         return redirect('/home/')
    email = request.session['email']
+
+   usr = users_login.objects.get(email=email)
+   uid = usr.uid2
+   user_t = users_reg.objects.get(uid=uid)
    password=request.session['password']
    if request.method == "POST":
         pwd =request.POST.get("pass")
@@ -249,7 +277,7 @@ def cpass(request):
    content = {
        'l_det':l_det2,
        'r_det': users_reg.objects.get(uid=uid2),
-
+        'user':user_t,
        'email': email
    }
    return render(request, "ch_pass.html",content)
@@ -296,13 +324,17 @@ def student(request):
 def profile(request):
     #reg=users_reg.objects.all()
     email=request.session['email']
+    usr = users_login.objects.get(email=email)
+    uid = usr.uid2
+    user_t = users_reg.objects.get(uid=uid)
     if request.session['email'] == 'null':
         return redirect('/home/')
     else :
       content={
          'l_det':users_login.objects.all(),
          'r_det':users_reg.objects.all(),
-         'email':email
+         'email':email,
+          'user':user_t
       }
       return render(request,"profile.html",content)
 
@@ -314,6 +346,8 @@ def e_profile(request):
    uid=user1.uid2
    user=users_reg.objects.get(uid=uid)
 
+
+
    if request.session['email'] == 'null':
         return redirect('/home/')
    else:
@@ -321,7 +355,8 @@ def e_profile(request):
          'l_det':users_login.objects.all(),
          'r_det':users_reg.objects.all(),
          'd_det':department.objects.all(),
-         'email':email
+         'email':email,
+         'user':user
        }
      if request.method == "POST":
          f_name = request.POST.get("f_name")
@@ -338,8 +373,9 @@ def e_profile(request):
 
 
 def add_cart_i(request,id):
-    if request.session['email'] == 'null':
+    if request.session['email'] == 'null'  :
         return redirect('/home/')
+
     # cart_item=cart1.objects.get(Items_id=id)
     item=items.objects.get(Items_id=id)
 
@@ -377,13 +413,18 @@ def cart(request):
     if request.session['email'] == 'null':
         return redirect('/home/')
     email = request.session['email']
+    user1 = users_login.objects.get(email=email)
+    uid = user1.uid2
+    user = users_reg.objects.get(uid=uid)
+
     cart=cart1.objects.filter(person=email)
     total=0
     for cart in cart:
         total += cart.price * cart.quantity
     content={
         'c_det' : cart1.objects.filter(person=email),
-        'stotal':total
+        'stotal':total,
+        'user':user
     }
 
 
@@ -403,6 +444,10 @@ def u_cart(request):
            print(qua)
            if qua<'0':
                item1.quantity=1
+           if qua>'200':
+               messages.info(request, "enter the quantity below 200")
+               return redirect('/cart/')
+
            item1.save()
            c_item1 = cart1.objects.get(person=email, item=items)
            c_item1.total = c_item1.price * c_item1.quantity
@@ -426,36 +471,66 @@ def de_cart(request,id):
 def checkout(request):
     if request.session['email'] == 'null':
         return redirect('/home/')
+
     email = request.session['email']
+    usr = users_login.objects.get(email=email)
+    uid = usr.uid2
+    user_t = users_reg.objects.get(uid=uid)
+
     cart = cart1.objects.filter(person=email)
     total = 0
+    for c in cart:
+        if c.quantity>c.item.stock:
+            messages.info(request, "item "+c.item.item+" don't have that much stock")
+            return redirect('/cart/')
+
     for cart in cart:
         total += cart.price * cart.quantity
     content = {
         'c_det': cart1.objects.filter(person=email),
-        'stotal': total
+        'stotal': total,
+        'user':user_t
     }
     return render (request,"checkout.html",content)
+
+
+
+
+def staff_dash(request):
+    if request.session['email'] == 'null':
+        return redirect('/home/')
+    else:
+       email = request.session['email']
+       if staff_reg.objects.filter(email=email).exists():
+          return render(request, 'staff_dashboard.html')
+       else:
+           return redirect('/home/')
+
+
 
 
 
 def staff_item_add(request):
     if request.session['email'] == 'null':
         return redirect('/home/')
-    email=request.session['email']
-    types = {
+    else:
+       email = request.session['email']
+       if staff_reg.objects.filter(email=email).exists():
+           email=request.session['email']
+           types = {
         't_det':type.objects.all(),
     }
     if request.method == "POST":
         person=staff_reg.objects.get(email=email)
         ty=request.POST.get("type")
         i_type=type.objects.get(type=ty)
-        item = request.POST.get("item")
+        ite = request.POST.get("item")
         price = request.POST.get("price")
         stock = request.POST.get("stock")
         image = request.FILES.get("image")
 
-        item.lower()
+        item=ite.lower()
+        print(item)
         if items.objects.filter(item=item).exists():
             messages.info(request, "---item already exists---")
             return redirect('/staff_item_add/')
@@ -467,6 +542,37 @@ def staff_item_add(request):
             return redirect('/staff_item_add/')
 
     return render(request, "staff_item_add.html", types)
+
+
+def staff_item_view(request):
+    if request.session['email'] == 'null':
+        return redirect('/home/')
+    email=request.session['email']
+    types = {
+        't_det':type.objects.all(),
+    }
+    if request.method == "POST":
+        person=staff_reg.objects.get(email=email)
+        ty=request.POST.get("type")
+        i_type=type.objects.get(type=ty)
+        ite = request.POST.get("item")
+        price = request.POST.get("price")
+        stock = request.POST.get("stock")
+        image = request.FILES.get("image")
+
+        item=ite.lower()
+        print(item)
+        if items.objects.filter(item=item).exists():
+            messages.info(request, "---item already exists---")
+            return redirect('/staff_item_add/')
+
+        else:
+            item_save=items(person=person,Type=i_type,item=item,price=price,stock=stock,image=image)
+            item_save.save()
+            messages.info(request, "---item added successfully---")
+            return redirect('/staff_item_add/')
+
+    return render(request, "staff_item_view.html", types)
 
 
 
