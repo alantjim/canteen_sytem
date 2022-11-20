@@ -94,3 +94,24 @@ class cart1(models.Model):
     def __str__(self):
        return ( self.person)
 
+class orders(models.Model):
+    user = models.ForeignKey("users_login",on_delete=models.CASCADE)
+    amount=models.FloatField(blank=True,null=True)
+    ra_o_id=models.CharField(max_length=40,null=True)
+    ra_p_id=models.CharField(max_length=40,null=True)
+    ra_status=models.CharField(max_length=40,null=True)
+    created_at=models.DateTimeField(auto_now_add=True)
+    paid=models.BooleanField(default=False)
+
+    def __str__(self):
+        return (self.user.email)
+
+class orderplaced(models.Model):
+    user = models.ForeignKey("users_login",on_delete=models.CASCADE)
+    product =models.ForeignKey("items",on_delete=models.CASCADE)
+    quantity =models.IntegerField()
+    payment  =models.ForeignKey("orders",on_delete=models.CASCADE)
+    is_ordered = True
+
+    def __str__(self):
+        return (self.product.item)

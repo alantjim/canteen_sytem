@@ -14,13 +14,18 @@ urlpatterns = [
     path('profile/', views.profile),
     path('user1/', views.user1),
     path('shop/', views.shop),
+
+
     path('user_search/', views.user_search),
 
     path('shop1/<int:id>', views.shop1),
     path('staff_dash/', views.staff_dash),
-
+    path('paymentdone/', views.payment_done),
+    path('u_orders/', views.u_orders),
     path('staff_item_add/', views.staff_item_add),
     path('staff_item_view/', views.staff_item_view),
+    path('staff_item_edit/<int:id>/', views.staff_item_edit),
+    path('staff_order_view/', views.staff_order_view),
     path('cart/', views.cart),
     path('checkout/', views.checkout),
 

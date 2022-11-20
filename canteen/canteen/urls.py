@@ -36,8 +36,12 @@ urlpatterns = [
     path('shop/', include('app1.urls')),
     path('user_search/', include('app1.urls')),
     path('shop1/<int:id>', include('app1.urls')),
+    path('paymentdone/', include('app1.urls')),
+    path('u_orders/', include('app1.urls')),
     path('/staff_item_add/', include('app1.urls')),
     path('/staff_item_view/', include('app1.urls')),
+    path('/staff_item_edit/<int:id/', include('app1.urls')),
+    path('/staff_order_view/', include('app1.urls')),
 
 
 

@@ -250,8 +250,53 @@
 								</tr>
 								
 							</tbody>
-						</table>
-						<a href="#" class="boxed-btn">Place Order</a>
+						</table><br><br>
+						<form action="/payment_success/" method="POST" id="myform">{% csrf_token %}
+						<button class="boxed-btn" type="submit" id="rzp-button1">Place Order</button>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_qECZQA3vVzkFrP", 
+    "amount": "{{p_total}}", 
+    "currency": "INR",
+    "name": "Ajce_canteen",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+	"handler": function (response){
+                                console.log("success")
+                                var form = document.getElementById["myform"];
+
+
+                                var a = response.razorpay_payment_id;
+
+                                // alert({{order_id}})
+
+                                window.location.href = 'http://127.0.0.1:8000/paymentdone?order_id=${response.razorpay_order_id}&cust_id=${response.customer}&payment_id='+a
+
+                            },
+    "prefill": {
+        "name": "{{user.f_name}}",
+        "email": "{{usr_lg.email}}",
+        "contact": "{{user.mobile}}"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script></form>
+
+						<!-- <a href="#" class="boxed-btn">Place Order</a> -->
 					</div>
 				</div>
 			</div>
