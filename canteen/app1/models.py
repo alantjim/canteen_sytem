@@ -77,6 +77,7 @@ class items(models.Model):
     price = models.IntegerField()
     stock=models.IntegerField()
     image = models.ImageField(upload_to='items/%m',null=True)
+    status=models.IntegerField(default=1)
 
     def __str__(self):
      return ( self.item)

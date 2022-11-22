@@ -28,10 +28,11 @@
 			var item = document.getElementById("item").value ;
 			var stock = document.getElementById("stock").value ;
 			var price = document.getElementById("price").value ;
-			var image = document.getElementById("image").value ;
+			var status = document.getElementById("status").value ;
 		
 			var str= /^[a-zA-Z]+$/;
 			var num=/^[0-9]+$/;
+			var n=/^[0-1]+$/;
 			if (type=="null" ){
 					alert("select the item type");
 					return false;
@@ -50,6 +51,11 @@
 					alert("Enter Stock in number");
 					return false;
 				}
+			 if (n.test(status)==false ){
+					alert("Enter status as 1 or 0");
+					return false;
+				}
+			
 					
 		
 			 
@@ -79,12 +85,12 @@
             </a>
 					</li>
 				</li>
-				<li class="sidebar-item active ">
+				<li class="sidebar-item  ">
 					<a class="sidebar-link" href="/staff_item_add/">
 		  <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Add item</span>
 		</a>
 				</li>
-				<li class="sidebar-item ">
+				<li class="sidebar-item active">
 					<a class="sidebar-link" href="/staff_item_view/">
 		  <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">View Items</span>
 		</a>
@@ -155,6 +161,14 @@
 							</div>
 							<div class="card-body">
 								<input type="text" class="form-control" placeholder="Stock" name="stock" id="stock" value="{{i_det.stock}}">
+							</div>
+							<div class="card-header"><br><br>
+								<h5 class="card-title mb-0">Status</h5>
+								<h2 class="card-title mb-0">[ 1 for activate]</h2>
+								<h2 class="card-title mb-0">[ 0 for deactivate]</h2>
+							</div>
+							<div class="card-body">
+								<input type="text" class="form-control" placeholder="Status" name="status" id="status" value="{{i_det.status}}">
 							</div>
 						<!-- </div>
 					</div>

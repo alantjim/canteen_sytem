@@ -158,7 +158,7 @@ def shop(request):
      usr = users_login.objects.get(email=email)
      uid = usr.uid2
      user_t = users_reg.objects.get(uid=uid)
-     list_items = items.objects.all()
+     list_items = items.objects.filter(status=1)
      # if request.method == "POST":
      #         fil_item=request.POST.get("fil_item")
      #         fil_type=request.POST.get("fil_type")
@@ -460,11 +460,11 @@ def u_cart(request):
            qua=item1.quantity
            print(qua)
            print(items)
-           if qua<'0':
+           if qua<'1':
                item1.quantity=1
-           if qua>'200':
-               messages.info(request, "enter the quantity below 200")
-               return redirect('/cart/')
+           # if qua>'200':
+           #     messages.info(request, "enter the quantity below 200")
+           #     return redirect('/cart/')
 
            item1.save()
            c_item1 = cart1.objects.get(person=email, item=items)
@@ -499,7 +499,8 @@ def checkout(request):
     total = 0
     for c in cart:
         if c.quantity>c.item.stock:
-            messages.info(request, "item "+c.item.item+" don't have that much stock")
+            messages.info(request, "Available stock of "+c.item.item+" is ")
+            messages.info(request, c.item.stock )
             return redirect('/cart/')
 
     for cart in cart:
@@ -560,6 +561,8 @@ def payment_done(request):
     for c in cart:
         it=items.objects.get(item=c.item)
         it.stock=it.stock-c.quantity
+        if it.stock==0:
+            it.status=0
         it.save()
         orderplaced(user=usr, product=c.item, quantity=c.quantity, payment=payment).save()
         c.delete()
@@ -690,6 +693,7 @@ def staff_item_edit(request,id):
         item_det.item = item_e
         item_det.price = request.POST.get("price")
         item_det.stock = request.POST.get("stock")
+        item_det.status = request.POST.get("status")
         # if items.objects.filter(item=item_e).exists():
         #     messages.info(request, "---item already exists---")
         #     return redirect('/staff_item_edit/')

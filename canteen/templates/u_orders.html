@@ -165,7 +165,7 @@
 						<table class="cart-table">
 							<thead class="cart-table-head">
 								<tr class="table-head-row">
-									<th class="product-remove"></th>
+									<!-- <th class="product-remove"></th> -->
 									<th class="product-image">Product Image</th>
 									<th class="product-name">Name</th>
 									<th class="product-price">Price</th>
@@ -176,7 +176,7 @@
 							<tbody>
 								{% for c in c_det %}
 								<tr class="table-body-row">
-									<td class="product-remove"><a href="/de_cart/{{c.cart_id}}"><i class="far fa-window-close"></i></a></td>
+									<!-- <td class="product-remove"><a href="/de_cart/{{c.cart_id}}"><i class="far fa-window-close"></i></a></td> -->
 									<td class="product-image"><img src="{{ c.product.image.url}}" alt=""></td>
 									<td class="product-name" readonly>{{ c.product.item }}</td>
 									<td class="product-price" readonly>{{ c.product.price }}</td>

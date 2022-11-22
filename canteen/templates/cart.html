@@ -159,9 +159,9 @@
 			<div class="row">
 				<div class="col-lg-8 col-md-12">
 					<div class="cart-table-wrap">
-						{% for msg in messages %}
-						<p><font color="red">{{ msg}}</font></p>
-				{% endfor %}</font>
+						<p>{% for msg in messages %}
+						<font color="red">{{ msg }} </font>
+				{% endfor %}</p>
 						<table class="cart-table">
 							<thead class="cart-table-head">
 								<tr class="table-head-row">
@@ -209,7 +209,8 @@
 						</table>
 						<div class="cart-buttons">
 							<input type="submit" class="boxed-btn" value ="Update Cart">
-							<!-- <a href="/u_cart/" class="boxed-btn" type="submit">Update Cart</a></form> -->
+							<!-- <a href="/u_cart/" class="boxed-btn" type="submit">Update Cart</a>-->
+							
 							<a href="/checkout/" class="boxed-btn black">Check Out</a>
 						</div>
 					</div>
@@ -225,9 +226,11 @@
 						</div>
 					</div> -->
 				</div>
+				
 			</div>
 		</div>
 	</div>
+	</form>
 	<!-- end cart -->
 
 	<!-- footer -->
