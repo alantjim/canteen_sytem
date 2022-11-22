@@ -116,6 +116,7 @@ class Adminteachers(admin.ModelAdmin):
 
 
 admin.site.register(users_reg, Adminuserreg )
+admin.site.register(users_login, )
 admin.site.register(type,)
 admin.site.register(orderplaced,)
 admin.site.register(orders,)

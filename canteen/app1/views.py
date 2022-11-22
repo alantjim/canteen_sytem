@@ -13,6 +13,22 @@ from django.contrib.auth import login,logout
 def index(request):
     request.session['email'] = 'null'
     request.session['password'] = 'null'
+    reg_users=users_reg.objects.all()
+    for r in reg_users:
+        r_id=r.uid
+        if users_login.objects.filter(uid2=r_id).exists():
+            continue
+        else:
+            users_reg.objects.get(uid=r_id).delete()
+
+    log_users = users_login.objects.all()
+    for r in log_users:
+        r_id = r.uid2
+        if users_reg.objects.filter(uid=r_id).exists():
+            continue
+        else:
+            users_login.objects.get(uid2=r_id).delete()
+
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("pass")
@@ -443,6 +459,7 @@ def u_cart(request):
            item1.quantity = request.POST.get(item1.item.item)
            qua=item1.quantity
            print(qua)
+           print(items)
            if qua<'0':
                item1.quantity=1
            if qua>'200':
@@ -541,6 +558,9 @@ def payment_done(request):
     # item = Product.objects.get(product=product, id=item_id)
 
     for c in cart:
+        it=items.objects.get(item=c.item)
+        it.stock=it.stock-c.quantity
+        it.save()
         orderplaced(user=usr, product=c.item, quantity=c.quantity, payment=payment).save()
         c.delete()
 
@@ -670,13 +690,13 @@ def staff_item_edit(request,id):
         item_det.item = item_e
         item_det.price = request.POST.get("price")
         item_det.stock = request.POST.get("stock")
-        if items.objects.filter(item=item_e).exists():
-            messages.info(request, "---item already exists---")
-            return redirect('/staff_item_edit/<int:id>/')
-        else:
-            item_det.save()
-            messages.info(request, "---item added successfully---")
-            return  redirect("/staff_item_view/")
+        # if items.objects.filter(item=item_e).exists():
+        #     messages.info(request, "---item already exists---")
+        #     return redirect('/staff_item_edit/')
+        # else:
+        item_det.save()
+        messages.info(request, "---item edited successfully---")
+        return  redirect("/staff_item_view/")
 
 
 

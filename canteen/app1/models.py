@@ -23,6 +23,8 @@ class users_login(models.Model):
     password = models.CharField(max_length=15)
     type = models.CharField(max_length=10)
 
+    def __str__(self):
+        return (self.email)
 
 
 class department(models.Model):
